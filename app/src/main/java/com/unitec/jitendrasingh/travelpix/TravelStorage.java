@@ -19,7 +19,7 @@ public class TravelStorage {
             sTravelStorage = new TravelStorage(context);
         }
         return sTravelStorage;
-    }
+     }
     //private constructor
     private TravelStorage(Context context){
         mTravels = new ArrayList<Travel>();
@@ -31,7 +31,7 @@ public class TravelStorage {
         }
     }
 
-    private List<Travel> getTravels(){
+    public List<Travel> getTravels(){
         return mTravels;
     }
 

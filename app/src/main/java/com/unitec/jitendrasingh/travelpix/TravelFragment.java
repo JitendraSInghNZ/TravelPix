@@ -2,6 +2,7 @@ package com.unitec.jitendrasingh.travelpix;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class TravelFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mTravel = new Travel();
+        Log.i("Memory Address",String.valueOf(mTravel));
     }
 
 

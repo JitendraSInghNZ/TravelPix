@@ -1,0 +1,34 @@
+package com.unitec.jitendrasingh.travelpix;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+/**
+ * Created by jitu on 10/06/16.
+ */
+public class TravelListFragment extends Fragment{
+    private RecyclerView mTravelRecyclerView;
+    private TravelAdapter mTravelAdapter;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.fragment_travel_list,container,false);
+        mTravelRecyclerView = (RecyclerView) view.findViewById(R.id.travel_recycler_view);
+        mTravelRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        updateUI();
+        return view;
+    }
+
+    public void updateUI(){
+        TravelStorage travelStorage = TravelStorage.get(getActivity());
+        List<Travel> travels = travelStorage.getTravels();
+        mTravelAdapter = new TravelAdapter(travels,getActivity());
+        mTravelRecyclerView.setAdapter(mTravelAdapter);
+    }
+}
