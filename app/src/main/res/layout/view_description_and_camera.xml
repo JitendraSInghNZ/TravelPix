@@ -37,7 +37,7 @@
             android:text="@string/trave_description_label"
             style="?android:listSeparatorTextViewStyle"
             />
-        <EditText android:id="@+id/travel_description"
+        <EditText android:id="@+id/travel_description_edit_text"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginRight="16dp"

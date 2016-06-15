@@ -31,7 +31,6 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelHolder>{
     public void onBindViewHolder(TravelHolder holder, int position){
         Travel travel = mTravels.get(position);
         holder.bindTravel(travel);
-
     }
 
     @Override

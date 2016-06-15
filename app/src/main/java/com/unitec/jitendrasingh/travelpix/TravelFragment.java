@@ -2,6 +2,9 @@ package com.unitec.jitendrasingh.travelpix;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -25,16 +29,25 @@ public class TravelFragment extends Fragment{
     private RatingBar mRatingBar;
     private ImageView mPhotoImageView;
     private CheckBox mVisitAgainCheckBox;
-    private TextView mDescriptionTextView;
-
+    private EditText mDescriptionEditText;
+    private static final String ARG_TRAVEL_ID = "travel_id";
+    private static final String DIALOG_DATE = "DialogDate";
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        UUID uuid = (UUID) getActivity().getIntent().getSerializableExtra(TravelActivity.EXTRA_TRAVEL_ID);
+        //UUID uuid = (UUID) getActivity().getIntent().getSerializableExtra(TravelActivity.EXTRA_TRAVEL_ID);
+        UUID uuid = (UUID) getArguments().getSerializable(ARG_TRAVEL_ID);
         mTravel = TravelStorage.get(getActivity()).getTravel(uuid);
         Log.i("Memory Address",String.valueOf(mTravel));
     }
 
+    public static TravelFragment newInstance(UUID travelId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_TRAVEL_ID,travelId);
+        TravelFragment travelFragment = new TravelFragment();
+        travelFragment.setArguments(args);
+        return travelFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -59,8 +72,17 @@ public class TravelFragment extends Fragment{
 
             }
         });
-        mDateButton.setEnabled(false);
+        //mDateButton.setEnabled(false);
         mDateButton.setText(mTravel.getDate().toString());
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                TravelDateChooserFragment dialog = new TravelDateChooserFragment();
+                dialog.show(fragmentManager, DIALOG_DATE);
+            }
+        });
+
 
         mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -70,7 +92,23 @@ public class TravelFragment extends Fragment{
         });
         mRatingBar.setRating(mTravel.getRating());
 
-        mDescriptionTextView.setText(mTravel.getDescription());
+        mDescriptionEditText.setText(mTravel.getDescription());
+        mDescriptionEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    mTravel.setDescription(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         mPhotoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +136,7 @@ public class TravelFragment extends Fragment{
         mRatingBar = (RatingBar)view.findViewById(R.id.rating_bar);
         mPhotoImageView = (ImageView)view.findViewById(R.id.travel_photo);
         mVisitAgainCheckBox = (CheckBox)view.findViewById(R.id.visit_again);
-        mDescriptionTextView = (TextView) view.findViewById(R.id.travel_description);
+        mDescriptionEditText = (EditText) view.findViewById(R.id.travel_description_edit_text);
         return view;
     }
 }

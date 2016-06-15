@@ -18,6 +18,13 @@ public class TravelListFragment extends Fragment{
     private RecyclerView mTravelRecyclerView;
     private TravelAdapter mTravelAdapter;
     public static Context sContext;
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_travel_list,container,false);
@@ -31,7 +38,13 @@ public class TravelListFragment extends Fragment{
     public void updateUI(){
         TravelStorage travelStorage = TravelStorage.get(getActivity());
         List<Travel> travels = travelStorage.getTravels();
-        mTravelAdapter = new TravelAdapter(travels,getActivity());
+
+        if(mTravelAdapter == null){
+            mTravelAdapter = new TravelAdapter(travels,getActivity());
+        }
+        else {
+            mTravelAdapter.notifyDataSetChanged();
+        }
         mTravelRecyclerView.setAdapter(mTravelAdapter);
     }
 }

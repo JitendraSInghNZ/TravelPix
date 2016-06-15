@@ -39,7 +39,7 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Intent intent = TravelActivity.newIntent(TravelListFragment.sContext,mTravel.getId());
+        Intent intent = TravelPagerActivity.newIntent(TravelListFragment.sContext,mTravel.getId());
         //Intent intent = new Intent(TravelListFragment.sContext,TravelActivity.class);
         TravelListFragment.sContext.startActivity(intent);
     }

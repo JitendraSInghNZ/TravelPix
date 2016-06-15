@@ -7,4 +7,5 @@
     <string name="visit_again_label">Visit Again</string>
     <string name="choose_receiver_text">Select a contact</string>
     <string name="send_travelpix_text">Send to a friend</string>
+    <string name="date_picker_title">Date of Travel:</string>
 </resources>

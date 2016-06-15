@@ -20,6 +20,7 @@ public class TravelActivity extends HostingFragmentActivity {
 
     @Override
     public Fragment createFragment() {
-        return new TravelFragment();
+        UUID travelId = (UUID) getIntent().getSerializableExtra(EXTRA_TRAVEL_ID);
+        return TravelFragment.newInstance(travelId);
     }
 }
