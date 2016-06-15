@@ -23,14 +23,15 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelHolder>{
     @Override
     public TravelHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(android.R.layout.simple_list_item_1,parent,false);
+        View view = layoutInflater.inflate(R.layout.list_item_travelpix,parent,false);
         return new TravelHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TravelHolder holder, int position){
         Travel travel = mTravels.get(position);
-        holder.mDescriptionTextView.setText(travel.getDescription());
+        holder.bindTravel(travel);
+
     }
 
     @Override

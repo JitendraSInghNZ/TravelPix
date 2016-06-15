@@ -11,7 +11,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.UUID;
 
 /**
  * Created by jitus_000 on 3/06/2016.
@@ -22,12 +25,13 @@ public class TravelFragment extends Fragment{
     private RatingBar mRatingBar;
     private ImageView mPhotoImageView;
     private CheckBox mVisitAgainCheckBox;
-
+    private TextView mDescriptionTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mTravel = new Travel();
+        UUID uuid = (UUID) getActivity().getIntent().getSerializableExtra(TravelActivity.EXTRA_TRAVEL_ID);
+        mTravel = TravelStorage.get(getActivity()).getTravel(uuid);
         Log.i("Memory Address",String.valueOf(mTravel));
     }
 
@@ -64,8 +68,9 @@ public class TravelFragment extends Fragment{
                 mTravel.setRating(rating);
             }
         });
+        mRatingBar.setRating(mTravel.getRating());
 
-
+        mDescriptionTextView.setText(mTravel.getDescription());
 
         mPhotoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +87,7 @@ public class TravelFragment extends Fragment{
                 mTravel.setVisitAgain(isChecked);
             }
         });
-
+        mVisitAgainCheckBox.setChecked(mTravel.isVisitAgain());
         return view;
     }
     //Inflating the view and setting up the UI widgets
@@ -93,6 +98,7 @@ public class TravelFragment extends Fragment{
         mRatingBar = (RatingBar)view.findViewById(R.id.rating_bar);
         mPhotoImageView = (ImageView)view.findViewById(R.id.travel_photo);
         mVisitAgainCheckBox = (CheckBox)view.findViewById(R.id.visit_again);
+        mDescriptionTextView = (TextView) view.findViewById(R.id.travel_description);
         return view;
     }
 }

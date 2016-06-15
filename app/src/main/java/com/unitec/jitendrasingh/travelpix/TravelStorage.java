@@ -27,6 +27,7 @@ public class TravelStorage {
             Travel travel = new Travel();
             travel.setDescription("Travel Location "+i);
             travel.setVisitAgain(i % 2 == 0);
+            travel.setRating(3.0f);
             mTravels.add(travel);
         }
     }
@@ -35,7 +36,7 @@ public class TravelStorage {
         return mTravels;
     }
 
-    private Travel getTravel(UUID id){
+    public Travel getTravel(UUID id){
         for(Travel travel : mTravels){
             if(travel.getId().equals(id)){
                 return travel;
