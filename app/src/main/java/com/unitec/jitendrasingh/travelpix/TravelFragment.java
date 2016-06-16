@@ -1,5 +1,7 @@
 package com.unitec.jitendrasingh.travelpix;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +20,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -32,6 +35,9 @@ public class TravelFragment extends Fragment{
     private EditText mDescriptionEditText;
     private static final String ARG_TRAVEL_ID = "travel_id";
     private static final String DIALOG_DATE = "DialogDate";
+    private static final int REQUEST_DATE = 0;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -66,19 +72,16 @@ public class TravelFragment extends Fragment{
 
 
 
-        mDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         //mDateButton.setEnabled(false);
-        mDateButton.setText(mTravel.getDate().toString());
+        updateTravelDate();
+
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                TravelDateChooserFragment dialog = new TravelDateChooserFragment();
+                TravelDateChooserFragment dialog = TravelDateChooserFragment.newInstance(mTravel.getDate());
+                dialog.setTargetFragment(TravelFragment.this,REQUEST_DATE);
                 dialog.show(fragmentManager, DIALOG_DATE);
             }
         });
@@ -128,6 +131,23 @@ public class TravelFragment extends Fragment{
         mVisitAgainCheckBox.setChecked(mTravel.isVisitAgain());
         return view;
     }
+
+    public void onActivityResult(int requestCode,int resultCode, Intent data){
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if(requestCode == REQUEST_DATE){
+            Date date = (Date) data.getSerializableExtra(TravelDateChooserFragment.EXTRA_DATE);
+            mTravel.setDate(date);
+            updateTravelDate();
+        }
+    }
+
+    private void updateTravelDate() {
+        mDateButton.setText(mTravel.getDate().toString());
+    }
+
     //Inflating the view and setting up the UI widgets
     public View UIWidgetReferenceSetUp(LayoutInflater inflater, ViewGroup container){
         View view = inflater.inflate(R.layout.fragment_travel,container,false);
