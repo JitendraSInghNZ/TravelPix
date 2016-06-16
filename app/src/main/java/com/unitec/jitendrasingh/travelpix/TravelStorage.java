@@ -23,13 +23,7 @@ public class TravelStorage {
     //private constructor
     private TravelStorage(Context context){
         mTravels = new ArrayList<Travel>();
-        for(int i = 0; i < 100 ; ++i){
-            Travel travel = new Travel();
-            travel.setDescription("Travel Location "+i);
-            travel.setVisitAgain(i % 2 == 0);
-            travel.setRating(3.0f);
-            mTravels.add(travel);
-        }
+
     }
 
     public List<Travel> getTravels(){
@@ -43,5 +37,9 @@ public class TravelStorage {
             }
         }
         return null;
+    }
+
+    public void addTravel(Travel travel){
+        mTravels.add(travel);
     }
 }
