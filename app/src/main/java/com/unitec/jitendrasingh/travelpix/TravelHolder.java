@@ -1,14 +1,13 @@
 package com.unitec.jitendrasingh.travelpix;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.unitec.jitendrasingh.travelpix.model.Travel;
 
 /**
  * Created by jitu on 10/06/16.

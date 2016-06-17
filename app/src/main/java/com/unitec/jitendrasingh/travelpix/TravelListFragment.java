@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.unitec.jitendrasingh.travelpix.model.Travel;
+import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
+
 import java.util.List;
 
 /**

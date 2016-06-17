@@ -17,8 +17,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.unitec.jitendrasingh.travelpix.model.Travel;
+import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
 
 import java.util.Date;
 import java.util.UUID;
@@ -45,6 +46,12 @@ public class TravelFragment extends Fragment{
         UUID uuid = (UUID) getArguments().getSerializable(ARG_TRAVEL_ID);
         mTravel = TravelStorage.get(getActivity()).getTravel(uuid);
         Log.i("Memory Address",String.valueOf(mTravel));
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        TravelStorage.get(getActivity()).updateTravelLocation(mTravel);
     }
 
     public static TravelFragment newInstance(UUID travelId){

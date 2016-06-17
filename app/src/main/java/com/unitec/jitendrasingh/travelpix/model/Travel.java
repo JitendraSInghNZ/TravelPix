@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package com.unitec.jitendrasingh.travelpix.model;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,7 +14,11 @@ public class Travel {
     private Date mDate;
 
     public Travel(){
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Travel(UUID id){
+        mId = id;
         mDate = new Date();
     }
 
