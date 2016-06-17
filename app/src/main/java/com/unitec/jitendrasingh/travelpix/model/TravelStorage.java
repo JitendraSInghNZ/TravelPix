@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
 import com.unitec.jitendrasingh.travelpix.database.TravelLocationBaseHelper;
 import com.unitec.jitendrasingh.travelpix.database.TravelLocationCursorWrapper;
 import com.unitec.jitendrasingh.travelpix.database.TravelLocationDbSchema.TravelLocationTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +40,20 @@ public class TravelStorage {
 
     public List<Travel> getTravels(){
         //return mTravels;
-        return new ArrayList<>();
+        //return new ArrayList<>();
+        List<Travel> travels = new ArrayList<>();
+        TravelLocationCursorWrapper cursor = queryTravelLocations(null,null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                travels.add(cursor.getTravel());
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+        return travels;
     }
 
     public Travel getTravel(UUID id){
@@ -47,7 +62,28 @@ public class TravelStorage {
                 return travel;
             }
         }*/
-        return null;
+        //return null;
+        TravelLocationCursorWrapper cursorWrapper = queryTravelLocations(TravelLocationTable.Columns.UUID + " = ?",new String[]{id.toString()});
+        try{
+            if(cursorWrapper.getCount() == 0){
+                return null;
+            }
+
+            cursorWrapper.moveToFirst();
+            return cursorWrapper.getTravel();
+        }
+        finally {
+            cursorWrapper.close();
+        }
+    }
+
+    public File getPhotoFile(Travel travel){
+        File externalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        if(externalFilesDir == null){
+            return null;
+        }
+        return new File(externalFilesDir, travel.getPhotoFilename());
     }
 
     public void updateTravelLocation(Travel travel){

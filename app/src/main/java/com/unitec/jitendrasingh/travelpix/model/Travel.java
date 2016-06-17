@@ -57,4 +57,8 @@ public class Travel {
     public UUID getId(){
         return mId;
     }
+
+    public String getPhotoFilename(){
+        return "TRAVELPIX_IMG_"+getId().toString()+".jpg";
+    }
 }

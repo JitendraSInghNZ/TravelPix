@@ -39,4 +39,8 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelHolder>{
     public int getItemCount(){
         return mTravels.size();
     }
+
+    public void setTravelLocations(List<Travel> travels){
+        mTravels = travels;
+    }
 }

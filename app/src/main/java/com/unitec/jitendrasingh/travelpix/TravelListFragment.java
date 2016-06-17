@@ -54,6 +54,8 @@ public class TravelListFragment extends Fragment{
         }
     }
 
+
+
     private void updateSubtitle() {
         TravelStorage travelStorage = TravelStorage.get(getActivity());
         int crimeCount = travelStorage.getTravels().size();
@@ -112,11 +114,13 @@ public class TravelListFragment extends Fragment{
 
         if(mTravelAdapter == null){
             mTravelAdapter = new TravelAdapter(travels,getActivity());
+            mTravelRecyclerView.setAdapter(mTravelAdapter);
         }
         else {
+            mTravelAdapter.setTravelLocations(travels);
             mTravelAdapter.notifyDataSetChanged();
         }
         updateSubtitle();
-        mTravelRecyclerView.setAdapter(mTravelAdapter);
+
     }
 }
