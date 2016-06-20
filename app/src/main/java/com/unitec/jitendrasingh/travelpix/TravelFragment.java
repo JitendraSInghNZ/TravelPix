@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -36,7 +37,7 @@ import java.util.UUID;
  */
 public class TravelFragment extends Fragment{
     private Travel mTravel;
-    private File mPhotoFile;
+    public File mPhotoFile;
     private Button mSendButton, mDateButton;
     private RatingBar mRatingBar;
     private ImageView mPhotoImageView;
@@ -47,7 +48,7 @@ public class TravelFragment extends Fragment{
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_PHOTO = 2;
-
+    private static Bitmap mImageBitmap;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -133,7 +134,8 @@ public class TravelFragment extends Fragment{
         mPhotoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                   DialogFragment dialogFragment = TravelImageViewerDialogFragment.newInstance(mTravel.getId());
+                    dialogFragment.show(getFragmentManager(),"image");
             }
         });
 
@@ -192,6 +194,7 @@ public class TravelFragment extends Fragment{
         }
         else {
             Bitmap bitmap = PictureUtilsHelper.getScaledBitmap(mPhotoFile.getPath(), getContext());
+            mImageBitmap = bitmap;
             mPhotoImageView.setImageBitmap(bitmap);
         }
     }
@@ -209,4 +212,7 @@ public class TravelFragment extends Fragment{
         mTravelPhotoImageButton = (ImageButton) view.findViewById(R.id.travel_camera);
         return view;
     }
+
 }
+
+

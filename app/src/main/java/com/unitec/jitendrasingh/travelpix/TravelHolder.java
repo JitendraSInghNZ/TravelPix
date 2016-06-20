@@ -18,6 +18,7 @@ import java.io.File;
 
 /**
  * Created by jitu on 10/06/16.
+ * Creates ViewHolder after getting count from adapter
  */
 public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mDescriptionTextView;
@@ -27,6 +28,10 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
     private Travel mTravel;
     private File mThumbnailFile;
 
+    /**
+     *
+     * @param itemView : Holds reference to View objects created by view holder
+     */
     public TravelHolder(View itemView){
         super(itemView);
         itemView.setOnClickListener(this);
@@ -36,6 +41,10 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
         mThumbnailImageView = (ImageView) itemView.findViewById(R.id.list_item_travel_photo_image_view);
     }
 
+    /**
+     *
+     * @param travel: this method binds the travel object passed from adapter
+     */
     public void bindTravel(Travel travel){
         mTravel = travel;
         mDescriptionTextView.setText(mTravel.getDescription());
@@ -53,6 +62,10 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
         }
     }
 
+    /**
+     *
+     * @param v : view object to pass on click listener on view objects
+     */
     @Override
     public void onClick(View v) {
         Intent intent = TravelPagerActivity.newIntent(TravelListFragment.sContext,mTravel.getId());
