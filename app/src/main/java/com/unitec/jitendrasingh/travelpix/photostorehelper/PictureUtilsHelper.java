@@ -1,6 +1,7 @@
 package com.unitec.jitendrasingh.travelpix.photostorehelper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -37,7 +38,9 @@ public class PictureUtilsHelper {
     }
 
 
-    public static Bitmap getScaledBitmap(String path, Activity activity){
+
+    public static Bitmap getScaledBitmap(String path, Context context){
+        Activity activity = (Activity) context;
         Point size = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(size);
         return getScaledBitmap(path, size.x, size.y);

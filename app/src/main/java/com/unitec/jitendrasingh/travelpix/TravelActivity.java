@@ -1,5 +1,6 @@
 package com.unitec.jitendrasingh.travelpix;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ public class TravelActivity extends HostingFragmentActivity {
     public static Intent newIntent(Context packageContext, UUID travelId){
         Intent intent = new Intent(packageContext,TravelActivity.class);
         intent.putExtra(EXTRA_TRAVEL_ID,travelId);
+
         return intent;
     }
 

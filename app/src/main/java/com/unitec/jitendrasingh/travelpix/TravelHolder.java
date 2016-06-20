@@ -1,6 +1,8 @@
 package com.unitec.jitendrasingh.travelpix;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
@@ -8,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.unitec.jitendrasingh.travelpix.model.Travel;
+import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
+import com.unitec.jitendrasingh.travelpix.photostorehelper.PictureUtilsHelper;
+import com.unitec.jitendrasingh.travelpix.photostorehelper.ThumbnailPictureUtilsHelper;
+
+import java.io.File;
 
 /**
  * Created by jitu on 10/06/16.
@@ -18,6 +25,7 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
     public CheckBox mVisitAgainCheckBox;
     public ImageView mThumbnailImageView;
     private Travel mTravel;
+    private File mThumbnailFile;
 
     public TravelHolder(View itemView){
         super(itemView);
@@ -33,7 +41,16 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
         mDescriptionTextView.setText(mTravel.getDescription());
         mDateTextView.setText(mTravel.getDate().toString());
         mVisitAgainCheckBox.setChecked(mTravel.isVisitAgain());
-        mThumbnailImageView.setImageResource(R.drawable.ic_launcher);
+        mThumbnailFile = TravelStorage.get(TravelListFragment.sContext).getPhotoFile(mTravel);
+        if(mThumbnailFile == null || !mThumbnailFile.exists()){
+            mThumbnailImageView.setImageResource(R.drawable.ic_launcher);
+        }
+        else{
+            //Bitmap bitmap = PictureUtilsHelper.getScaledBitmap(mThumbnailFile.getPath(), TravelListFragment.sContext);
+            Bitmap bitmap = ThumbnailPictureUtilsHelper.decodeSampledBitmapFromResource(mThumbnailFile.getPath(),100,80);
+            mThumbnailImageView.setImageBitmap(bitmap);
+            //mThumbnailImageView.setImageBitmap();
+        }
     }
 
     @Override

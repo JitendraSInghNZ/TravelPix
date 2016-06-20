@@ -191,7 +191,7 @@ public class TravelFragment extends Fragment{
             mPhotoImageView.setImageDrawable(null);
         }
         else {
-            Bitmap bitmap = PictureUtilsHelper.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            Bitmap bitmap = PictureUtilsHelper.getScaledBitmap(mPhotoFile.getPath(), getContext());
             mPhotoImageView.setImageBitmap(bitmap);
         }
     }
