@@ -17,6 +17,7 @@ import java.util.UUID;
 
 /**
  * Created by jitu on 10/06/16.
+ * This is a singleton class so that only one database object exist
  */
 public class TravelStorage {
     private static TravelStorage sTravelStorage;
@@ -24,6 +25,11 @@ public class TravelStorage {
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
+    /**
+     *
+     * @param context : the context object of the application
+     * @return reference this object
+     */
     public static TravelStorage get(Context context){
         if(sTravelStorage == null){
             sTravelStorage = new TravelStorage(context);
@@ -31,13 +37,21 @@ public class TravelStorage {
         return sTravelStorage;
      }
     //private constructor
+
+    /**
+     *
+     * @param context : the context object of the application
+     */
     private TravelStorage(Context context){
         mContext = context.getApplicationContext();
         mDatabase = new TravelLocationBaseHelper(mContext).getWritableDatabase();
         //mTravels = new ArrayList<Travel>();
-
     }
 
+    /**
+     *
+     * @return : List of the Travel objects
+     */
     public List<Travel> getTravels(){
         //return mTravels;
         //return new ArrayList<>();
@@ -56,6 +70,11 @@ public class TravelStorage {
         return travels;
     }
 
+    /**
+     *
+     * @param id: unique id of the travel object
+     * @return: the travel object after querying for the current unique id
+     */
     public Travel getTravel(UUID id){
         /*for(Travel travel : mTravels){
             if(travel.getId().equals(id)){
@@ -77,6 +96,11 @@ public class TravelStorage {
         }
     }
 
+    /**
+     *
+     * @param travel : Travel object used to query for the handle to a file
+     * @return
+     */
     public File getPhotoFile(Travel travel){
         File externalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
@@ -86,6 +110,10 @@ public class TravelStorage {
         return new File(externalFilesDir, travel.getPhotoFilename());
     }
 
+    /**
+     *
+     * @param travel : Travel object used to update database
+     */
     public void updateTravelLocation(Travel travel){
         String uuidString = travel.getId().toString();
         ContentValues values = getContentValues(travel);
@@ -93,6 +121,12 @@ public class TravelStorage {
         mDatabase.update(TravelLocationTable.NAME, values, TravelLocationTable.Columns.UUID + " = ?", new String[]{uuidString});
     }
 
+    /**
+     *
+     * @param whereClause : string  arguments for the where clause
+     * @param whereArgs : string array arguments for the where clause
+     * @return : returns a wrapper object after querying the database
+     */
     private TravelLocationCursorWrapper queryTravelLocations(String whereClause, String[] whereArgs){
         Cursor cursor = mDatabase.query(TravelLocationTable.NAME,
                                         null,   //Columns - null selects all columns
@@ -104,6 +138,11 @@ public class TravelStorage {
         return new TravelLocationCursorWrapper(cursor);
     }
 
+    /**
+     *
+     * @param travel : Travel object used to get the content values from the application
+     * @return Content values
+     */
     private static ContentValues getContentValues(Travel travel){
         ContentValues values = new ContentValues();
         values.put(TravelLocationTable.Columns.UUID, travel.getId().toString());
@@ -115,6 +154,10 @@ public class TravelStorage {
         return values;
     }
 
+    /**
+     *
+     * @param travel : Travel object used to add the travel object to the database
+     */
     public void addTravel(Travel travel){
         //mTravels.add(travel);
         ContentValues values = getContentValues(travel);

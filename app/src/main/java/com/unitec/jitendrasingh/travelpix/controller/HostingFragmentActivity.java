@@ -19,6 +19,11 @@ public abstract class HostingFragmentActivity extends AppCompatActivity{
      * @return Fragment for the controller fragment
      */
     public abstract Fragment createFragment();
+
+    /**
+     *
+     * @param savedInstanceKey: bundle object to save information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceKey){
         super.onCreate(savedInstanceKey);

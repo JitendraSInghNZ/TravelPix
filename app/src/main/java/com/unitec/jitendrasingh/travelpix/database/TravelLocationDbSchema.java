@@ -5,9 +5,12 @@ package com.unitec.jitendrasingh.travelpix.database;
  * Creates schema for the columns of the database
  */
 public class TravelLocationDbSchema {
-
+    /**
+     * static innerclass which gives static fields as querying the database
+     */
     public static final class TravelLocationTable {
         public static final String NAME = "travel_locations";
+
 
         public static final class Columns {
             public static final String UUID = "uuid";

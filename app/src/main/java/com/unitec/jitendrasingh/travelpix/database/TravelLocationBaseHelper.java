@@ -32,6 +32,12 @@ public class TravelLocationBaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table "+TravelLocationDbSchema.TravelLocationTable.NAME+"("+" _id integer primary key autoincrement, "+TravelLocationTable.Columns.UUID+", "+TravelLocationTable.Columns.DESCRIPTION+", "+TravelLocationTable.Columns.DATE+", "+TravelLocationTable.Columns.VISIT_AGAIN+", "+TravelLocationTable.Columns.RATING+")");
     }
 
+    /**
+     *
+     * @param db: SQLite database for storage
+     * @param oldVersion : old version int
+     * @param newVersion : new version int
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

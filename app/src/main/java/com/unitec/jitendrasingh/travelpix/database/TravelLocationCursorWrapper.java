@@ -22,6 +22,10 @@ public class TravelLocationCursorWrapper extends CursorWrapper{
         super(cursor);
     }
 
+    /**
+     *
+     * @return : Travel object after querying the SQLite database
+     */
     public Travel getTravel(){
         String uuidString = getString(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.UUID));
         String description = getString(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.DESCRIPTION));

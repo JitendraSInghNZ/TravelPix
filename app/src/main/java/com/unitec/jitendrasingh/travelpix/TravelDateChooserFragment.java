@@ -17,6 +17,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Created by jitu on 15/06/16.
+ * This class will host the Dialog fragment for implementing the calender fragment
  */
 public class TravelDateChooserFragment extends DialogFragment{
 
@@ -26,6 +27,11 @@ public class TravelDateChooserFragment extends DialogFragment{
 
     public static final String EXTRA_DATE = "com.unitec.jitendrasingh.travelpix.date";
 
+    /**
+     *
+     * @param date : Date object for having date fragment
+     * @return : The Travel choosing fragment
+     */
     public static TravelDateChooserFragment newInstance(Date date){
         Bundle args = new Bundle();
         args.putSerializable(ARG_DATE,date);
@@ -33,6 +39,12 @@ public class TravelDateChooserFragment extends DialogFragment{
         travelDateChooserFragment.setArguments(args);
         return travelDateChooserFragment;
     }
+
+    /**
+     *
+     * @param savedInstance : Bundle object which stores the state of the fragment
+      * @return : the Dialog for hosting the Date Dialog
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstance){
         Date date = (Date) getArguments().getSerializable(ARG_DATE);
@@ -59,6 +71,11 @@ public class TravelDateChooserFragment extends DialogFragment{
         }).create();
     }
 
+    /**
+     *
+     * @param resultCode : int for
+     * @param date
+     */
     private void sendResult(int resultCode, Date date){
         if(getTargetFragment() == null){
             return;
