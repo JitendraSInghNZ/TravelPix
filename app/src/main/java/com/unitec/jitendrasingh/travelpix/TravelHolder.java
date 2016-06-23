@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.unitec.jitendrasingh.travelpix.model.Travel;
@@ -25,6 +26,7 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
     public TextView mDateTextView;
     public CheckBox mVisitAgainCheckBox;
     public ImageView mThumbnailImageView;
+    public RatingBar mRatingBar;
     private Travel mTravel;
     private File mThumbnailFile;
 
@@ -39,6 +41,7 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
         mDateTextView = (TextView) itemView.findViewById(R.id.list_item_crime_date_text_view);
         mVisitAgainCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_visit_again_check_box);
         mThumbnailImageView = (ImageView) itemView.findViewById(R.id.list_item_travel_photo_image_view);
+        mRatingBar = (RatingBar)itemView.findViewById(R.id.list_item_crime_rating_bar_view);
     }
 
     /**
@@ -48,11 +51,12 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
     public void bindTravel(Travel travel){
         mTravel = travel;
         mDescriptionTextView.setText(mTravel.getDescription());
+        mRatingBar.setRating(mTravel.getRating());
         mDateTextView.setText(mTravel.getDate().toString());
         mVisitAgainCheckBox.setChecked(mTravel.isVisitAgain());
         mThumbnailFile = TravelStorage.get(TravelListFragment.sContext).getPhotoFile(mTravel);
         if(mThumbnailFile == null || !mThumbnailFile.exists()){
-            mThumbnailImageView.setImageResource(R.drawable.ic_launcher);
+            mThumbnailImageView.setImageResource(R.drawable.gallery);
         }
         else{
             //Bitmap bitmap = PictureUtilsHelper.getScaledBitmap(mThumbnailFile.getPath(), TravelListFragment.sContext);

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
+                style="?android:listSeparatorTextViewStyle"
                 android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/list_item_travel_photo_image_view"
@@ -38,4 +39,10 @@
         android:layout_below="@id/list_item_travel_description_text_view"
         tools:text="Travel Date"
         android:padding="4dp"/>
+    <RatingBar
+        android:id="@+id/list_item_crime_rating_bar_view"
+        android:layout_below="@id/list_item_crime_date_text_view"
+        android:layout_toRightOf="@id/list_item_travel_photo_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

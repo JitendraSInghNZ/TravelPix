@@ -2,6 +2,7 @@ package com.unitec.jitendrasingh.travelpix.database;
 
 /**
  * Created by jitu on 17/06/16.
+ * Creates schema for the columns of the database
  */
 public class TravelLocationDbSchema {
 

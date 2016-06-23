@@ -7,6 +7,7 @@ import com.unitec.jitendrasingh.travelpix.database.TravelLocationDbSchema.Travel
 
 /**
  * Created by jitu on 17/06/16.
+ * This is helper class which provides method to create SQLite database if one does not exist
  */
 public class TravelLocationBaseHelper extends SQLiteOpenHelper{
 

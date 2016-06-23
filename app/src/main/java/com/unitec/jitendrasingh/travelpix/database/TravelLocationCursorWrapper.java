@@ -10,6 +10,7 @@ import java.util.UUID;
 
 /**
  * Created by jitu on 17/06/16.
+ * This class provides methods to query database and get back a Travel model class
  */
 public class TravelLocationCursorWrapper extends CursorWrapper{
 

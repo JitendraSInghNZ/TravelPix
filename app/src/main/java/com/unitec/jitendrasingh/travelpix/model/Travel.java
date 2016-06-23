@@ -5,6 +5,7 @@ import java.util.UUID;
 
 /**
  * Created by jitus_000 on 8/06/2016.
+ * Model class which gives basic structure for the database
  */
 public class Travel {
     private String mDescription;

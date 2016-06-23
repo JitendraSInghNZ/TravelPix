@@ -10,9 +10,14 @@ import com.unitec.jitendrasingh.travelpix.R;
 
 /**
  * Created by jitu on 10/06/16.
+ *
+ * This is the main activity which acts controller provides hosting of different fragments
  */
 public abstract class HostingFragmentActivity extends AppCompatActivity{
-
+    /**
+     *
+     * @return Fragment for the controller fragment
+     */
     public abstract Fragment createFragment();
     @Override
     protected void onCreate(Bundle savedInstanceKey){
