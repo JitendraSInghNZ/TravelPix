@@ -13,6 +13,7 @@ public class Travel {
     private float mRating;
     private boolean mVisitAgain;
     private Date mDate;
+    //private String mFriendName;
 
     public Travel(){
         this(UUID.randomUUID());
@@ -62,4 +63,8 @@ public class Travel {
     public String getPhotoFilename(){
         return "TRAVELPIX_IMG_"+getId().toString()+".jpg";
     }
+
+    //public void setFriendName(String friendName){mFriendName = friendName;}
+
+    //public String getFriendName(){return mFriendName;}
 }

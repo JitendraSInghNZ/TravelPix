@@ -21,6 +21,7 @@
         <ImageButton android:id="@+id/travel_camera"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
+                     android:hapticFeedbackEnabled="true"
                      android:src="@android:drawable/ic_menu_camera"
             />
     </LinearLayout>

@@ -14,7 +14,10 @@ import java.util.UUID;
  */
 public class TravelLocationCursorWrapper extends CursorWrapper{
 
-
+    /**
+     *
+     * @param cursor
+     */
     public TravelLocationCursorWrapper(Cursor cursor){
         super(cursor);
     }
@@ -25,12 +28,13 @@ public class TravelLocationCursorWrapper extends CursorWrapper{
         long date = getLong(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.DATE));
         int visitAgain = getInt(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.VISIT_AGAIN));
         float rating = getFloat(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.RATING));
-
+//        String frienName = getString(getColumnIndex(TravelLocationDbSchema.TravelLocationTable.Columns.FRIEND_NAME));
         Travel travel = new Travel(UUID.fromString(uuidString));
         travel.setDescription(description);
         travel.setDate(new Date(date));
         travel.setVisitAgain(visitAgain != 0);
         travel.setRating(rating);
+  //      travel.setFriendName(frienName);
         return travel;
     }
 }

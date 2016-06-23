@@ -14,10 +14,19 @@ public class TravelLocationBaseHelper extends SQLiteOpenHelper{
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "travelLocationBase.db";
 
+    /**
+     *
+     * @param context: Application context object
+     *               constructor for the class
+     */
     public TravelLocationBaseHelper(Context context){
         super(context,DATABASE_NAME,null,VERSION);
     }
 
+    /**
+     *
+     * @param db: SQLite database for storage
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table "+TravelLocationDbSchema.TravelLocationTable.NAME+"("+" _id integer primary key autoincrement, "+TravelLocationTable.Columns.UUID+", "+TravelLocationTable.Columns.DESCRIPTION+", "+TravelLocationTable.Columns.DATE+", "+TravelLocationTable.Columns.VISIT_AGAIN+", "+TravelLocationTable.Columns.RATING+")");

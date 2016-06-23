@@ -111,6 +111,7 @@ public class TravelStorage {
         values.put(TravelLocationTable.Columns.DESCRIPTION, travel.getDescription());
         values.put(TravelLocationTable.Columns.VISIT_AGAIN, travel.isVisitAgain() ? 1 : 0);
         values.put(TravelLocationTable.Columns.RATING, travel.getRating());
+        //values.put(TravelLocationTable.Columns.FRIEND_NAME,travel.getFriendName());
         return values;
     }
 

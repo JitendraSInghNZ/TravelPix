@@ -15,6 +15,7 @@ public class TravelLocationDbSchema {
             public static final String DATE = "date";
             public static final String VISIT_AGAIN="visit_again";
             public static final String RATING = "rating";
+           // public static final String FRIEND_NAME = "friend_name";
         }
     }
 

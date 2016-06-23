@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,7 @@ public class TravelFragment extends Fragment{
 
     public static TravelFragment newInstance(UUID travelId){
         Bundle args = new Bundle();
-        args.putSerializable(ARG_TRAVEL_ID,travelId);
+        args.putSerializable(ARG_TRAVEL_ID, travelId);
         TravelFragment travelFragment = new TravelFragment();
         travelFragment.setArguments(args);
         return travelFragment;
@@ -85,6 +86,12 @@ public class TravelFragment extends Fragment{
             @Override
             public void onClick(View v) {
                // Toast.makeText(TravelFragment.this.getActivity(),String.valueOf(mTravel.getRating()+mTravel.getDate().toString()+mTravel.isSolved()),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, getAboutTravel());
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.about_travel));
+                intent = Intent.createChooser(intent,getString(R.string.about_travel));
+                startActivity(intent);
             }
         });
 
@@ -211,6 +218,21 @@ public class TravelFragment extends Fragment{
         mDescriptionEditText = (EditText) view.findViewById(R.id.travel_description_edit_text);
         mTravelPhotoImageButton = (ImageButton) view.findViewById(R.id.travel_camera);
         return view;
+    }
+
+    public String getAboutTravel(){
+        String visitAgainJudgement = null;
+        if(mTravel.isVisitAgain()){
+            visitAgainJudgement = getString(R.string.travel_visit_again);
+        }
+        else {
+            visitAgainJudgement = getString(R.string.travel_not_visit_again);
+        }
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat,mTravel.getDate()).toString();
+        String message =  ": "+mTravel.getDescription() + " I visited this place on " + dateString + " , I will rate it " + String.valueOf(mTravel.getRating()) + " out of 5 " + " and " + visitAgainJudgement;
+        String aboutTravel = getString(R.string.about_travel,mTravel) + message;
+        return aboutTravel;
     }
 
 }
