@@ -73,8 +73,8 @@ public class TravelDateChooserFragment extends DialogFragment{
 
     /**
      *
-     * @param resultCode : int for
-     * @param date
+     * @param resultCode : int for choosing the call back fragment
+     * @param date : date object
      */
     private void sendResult(int resultCode, Date date){
         if(getTargetFragment() == null){

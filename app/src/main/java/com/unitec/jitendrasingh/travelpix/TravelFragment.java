@@ -35,6 +35,7 @@ import java.util.UUID;
 
 /**
  * Created by jitus_000 on 3/06/2016.
+ * Hosts the TRavel detail activity
  */
 public class TravelFragment extends Fragment{
     private Travel mTravel;
@@ -50,6 +51,11 @@ public class TravelFragment extends Fragment{
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_PHOTO = 2;
     private static Bitmap mImageBitmap;
+
+    /**
+     *
+     * @param savedInstanceState  : Bundle object to store the state of the fragment
+     */
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -60,12 +66,20 @@ public class TravelFragment extends Fragment{
         Log.i("Memory Address",String.valueOf(mTravel));
     }
 
+    /**
+     * Call back method when fragment lifecycle changes to pause
+     */
     @Override
     public void onPause(){
         super.onPause();
         TravelStorage.get(getActivity()).updateTravelLocation(mTravel);
     }
 
+    /**
+     *
+     * @param travelId : unique id to get the travel object back
+     * @return : Travel Fragment
+     */
     public static TravelFragment newInstance(UUID travelId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_TRAVEL_ID, travelId);
@@ -74,6 +88,13 @@ public class TravelFragment extends Fragment{
         return travelFragment;
     }
 
+    /**
+     *
+     * @param inflater : inflater to inflate a layout
+     * @param container  : viewgroup to hold a layout
+     * @param savedInstanceState : Bundle object to store the state of the fragment
+     * @return: View object after inflating a layout
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //Setup UI and get reference to View Object after inflater inflates the layout
@@ -174,6 +195,12 @@ public class TravelFragment extends Fragment{
         return view;
     }
 
+    /**
+     *
+     * @param requestCode : callback from the intent to know which activity is reporting
+     * @param resultCode : whether the activity was OK or CANCEL
+     * @param data : Intent object
+     */
     public void onActivityResult(int requestCode,int resultCode, Intent data){
         if (resultCode != Activity.RESULT_OK) {
             return;
@@ -189,11 +216,16 @@ public class TravelFragment extends Fragment{
         }
     }
 
+    /**
+     * sets up the date button text data
+     */
     private void updateTravelDate() {
         mDateButton.setText(mTravel.getDate().toString());
     }
 
-
+    /**
+     * sets the image view after the fragment is created
+     */
     private void updatePhotoView(){
 
         if(mPhotoFile == null || !mPhotoFile.exists()){
@@ -220,6 +252,10 @@ public class TravelFragment extends Fragment{
         return view;
     }
 
+    /**
+     *
+     * @return : entire description about the travel location
+     */
     public String getAboutTravel(){
         String visitAgainJudgement = null;
         if(mTravel.isVisitAgain()){

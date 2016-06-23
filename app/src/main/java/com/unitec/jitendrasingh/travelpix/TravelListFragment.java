@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Created by jitu on 10/06/16.
+ * Hosts the List fragment
  */
 public class TravelListFragment extends Fragment{
     private RecyclerView mTravelRecyclerView;
@@ -29,12 +30,21 @@ public class TravelListFragment extends Fragment{
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
 
+    /**
+     *
+     * @param savedInstanceState : Bundle object which stores the state of the fragment
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+    /**
+     *
+     * @param item  menu item to set the options
+     * @return whether the menu item has been set
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -55,7 +65,9 @@ public class TravelListFragment extends Fragment{
     }
 
 
-
+    /**
+     * updates the subtitle to indicate total travel locations
+     */
     private void updateSubtitle() {
         TravelStorage travelStorage = TravelStorage.get(getActivity());
         int crimeCount = travelStorage.getTravels().size();
@@ -67,12 +79,20 @@ public class TravelListFragment extends Fragment{
         activity.getSupportActionBar().setSubtitle(subtitle);
     }
 
+    /**
+     * call back method on resuming the fragment lifecycle
+     */
     @Override
     public void onResume(){
         super.onResume();
         updateUI();
     }
 
+    /**
+     *
+     * @param menu : menu layout
+     * @param inflater  inflates the menu file
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -87,12 +107,23 @@ public class TravelListFragment extends Fragment{
         }
     }
 
+    /**
+     *
+     * @param outState : Bundle object which stores the state of the fragment
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
     }
 
+    /**
+     *
+     * @param inflater : inflater to inflate a layout
+     * @param container : viewgroup to hold a layout
+     * @param savedInstanceState : Bundle object to store the state of the fragment
+     * @return View object after inflating a layout
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_travel_list,container,false);
@@ -108,6 +139,9 @@ public class TravelListFragment extends Fragment{
     }
 
 
+    /**
+     * updates the list for the recycler view
+     */
     public void updateUI(){
         TravelStorage travelStorage = TravelStorage.get(getActivity());
         List<Travel> travels = travelStorage.getTravels();

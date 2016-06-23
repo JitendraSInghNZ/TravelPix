@@ -17,12 +17,17 @@ import java.util.UUID;
 
 /**
  * Created by jitu on 15/06/16.
+ * This is class which makes swiping of fragments
  */
 public class TravelPagerActivity extends AppCompatActivity{
     private static final String EXTRA_TRAVEL_ID = "com.unitec.jitendrasingh.travelpix.travel_id";
     private ViewPager mViewPager;
     private List<Travel> mTravels;
 
+    /**
+     *
+     * @param savedInstanceState : Bundle object which stores the state of the fragment
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -53,6 +58,12 @@ public class TravelPagerActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     *
+     * @param packageContext : context object of the application
+     * @param travelId : Unique id of the travel object
+     * @return static Intent object refrence
+     */
     public static Intent newIntent(Context packageContext, UUID travelId){
         Intent intent = new Intent(packageContext, TravelPagerActivity.class);
         intent.putExtra(EXTRA_TRAVEL_ID,travelId);

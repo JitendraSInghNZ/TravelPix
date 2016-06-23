@@ -19,11 +19,18 @@ import java.util.UUID;
 
 /**
  * Created by jitu on 20/06/16.
+ * This class sets up the large image of the travel
  */
 public class TravelImageViewerDialogFragment extends DialogFragment{
     private static final String ARG_UUID = "uuid";
     private File mPhotoFile;
     private ImageView mImageView;
+
+    /**
+     *
+     * @param uuid : unique id about the travel object
+     * @return: returns the static reference to dialog fragment
+     */
     public static TravelImageViewerDialogFragment newInstance(UUID uuid){
         Bundle args = new Bundle();
         args.putSerializable(ARG_UUID,uuid);
@@ -32,6 +39,13 @@ public class TravelImageViewerDialogFragment extends DialogFragment{
         return travelImageViewerDialogFragment;
     }
 
+    /**
+     *
+     * @param inflater : inflater to inflate a layout
+     * @param container : viewgroup to hold a layout
+     * @param savedInstanceState : Bundle object to store the state of the fragment
+     * @return View object after inflating a layout
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                Bundle savedInstanceState){
         UUID uuid = (UUID) getArguments().getSerializable(ARG_UUID);

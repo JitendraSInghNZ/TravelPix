@@ -9,8 +9,8 @@
     <string name="send_travelpix_text">Send to a friend</string>
     <string name="date_picker_title">Date of Travel:</string>
     <string name="new_travel_location">New Travel Location</string>
-    <string name="show_subtitle">Show Subtitle</string>
-    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="show_subtitle">Show Total Locations</string>
+    <string name="hide_subtitle">Hide Total Locations</string>
     <string name="subtitle_format">%1$s Locations</string>
     <string name="add_a_friend">Select Friend</string>
     <string name="tarvel_description">%1$s! The place was visited on %2$s. %3$s, and %4$s</string>
