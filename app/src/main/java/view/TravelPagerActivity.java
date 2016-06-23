@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.unitec.jitendrasingh.travelpix.R;
 import com.unitec.jitendrasingh.travelpix.model.Travel;
 import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
 

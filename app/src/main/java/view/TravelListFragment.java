@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.unitec.jitendrasingh.travelpix.R;
 import com.unitec.jitendrasingh.travelpix.model.Travel;
 import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
 

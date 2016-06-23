@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
+import com.unitec.jitendrasingh.travelpix.R;
 import com.unitec.jitendrasingh.travelpix.model.Travel;
 import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
 import com.unitec.jitendrasingh.travelpix.photostorehelper.PictureUtilsHelper;

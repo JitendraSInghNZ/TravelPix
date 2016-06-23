@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.support.v4.app.Fragment;
 

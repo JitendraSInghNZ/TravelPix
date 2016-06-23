@@ -1,8 +1,7 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
@@ -10,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.unitec.jitendrasingh.travelpix.R;
 import com.unitec.jitendrasingh.travelpix.model.Travel;
 import com.unitec.jitendrasingh.travelpix.model.TravelStorage;
-import com.unitec.jitendrasingh.travelpix.photostorehelper.PictureUtilsHelper;
 import com.unitec.jitendrasingh.travelpix.photostorehelper.ThumbnailPictureUtilsHelper;
 
 import java.io.File;
@@ -72,7 +71,7 @@ public class TravelHolder extends RecyclerView.ViewHolder implements View.OnClic
      */
     @Override
     public void onClick(View v) {
-        Intent intent = TravelPagerActivity.newIntent(TravelListFragment.sContext,mTravel.getId());
+        Intent intent = TravelPagerActivity.newIntent(TravelListFragment.sContext, mTravel.getId());
         //Intent intent = new Intent(TravelListFragment.sContext,TravelActivity.class);
         TravelListFragment.sContext.startActivity(intent);
     }

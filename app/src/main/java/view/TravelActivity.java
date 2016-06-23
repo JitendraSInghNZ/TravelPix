@@ -1,6 +1,5 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;

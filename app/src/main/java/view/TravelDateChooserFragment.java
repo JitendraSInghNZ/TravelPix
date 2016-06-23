@@ -1,4 +1,4 @@
-package com.unitec.jitendrasingh.travelpix;
+package view;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
+
+import com.unitec.jitendrasingh.travelpix.R;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +46,7 @@ public class TravelDateChooserFragment extends DialogFragment{
      *
      * @param savedInstance : Bundle object which stores the state of the fragment
       * @return : the Dialog for hosting the Date Dialog
+     * This idea of date picker from standard google tutorial to figure out the best way to pick the date from a date picker
      */
     @Override
     public Dialog onCreateDialog(Bundle savedInstance){
